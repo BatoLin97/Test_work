@@ -6,24 +6,20 @@ class Catalog:
         if not name:
             print("Название не может быть пустым")
             return
-        
+        if not isinstance(price, (int, float)) or price <= 0:
+            print("Цена должна быть числом больше 0")
+            return
+
         if name in self.items:
             print("Товар уже существует")
             return
-        """try:
-            #price = float(input("Введите цену: "))
-            if price <= 0:
-                print("Цена должна быть больше нуля")
-                return
-        except ValueError:
-            print("Цена должна быть числом")
-            return"""
+        
         self.items[name] = price
         print("✔ Товар добавлен")
 
     def show_items(self):
         if not self.items:
-            print("Empty Catalog")
+            print("Каталог пуст")
             return
         for name, price in self.items.items():
             print(f"- {name}: {price:.2f}")
@@ -46,16 +42,13 @@ class Catalog:
         if not name:
             print("Название не может быть пустым")
             return False
+        if not isinstance(new_price, (int, float)):
+            print("Цена должна быть числом")
+            return False
         if name not in self.items:
             print("Товар не найден")
             return False
-        try:
-            if new_price <= 0:
-                print("Цена не должна быть меньше 0 ")
-                return False
-        except ValueError:
-            print("Введите число")
-            return False
+        
         self.items[name] = new_price
         return True
 
@@ -63,30 +56,8 @@ class Catalog:
     def find(self,name):
         return self.items.get(name)
 
+    def clear(self):
+        self.items.clear()
+        print("Каталог очищен") 
 
-""" 
-    def save(self):
-        with open ("catalog_1.txt", "w", encoding="utf-8") as file:
-            for name, price in self.items.items():
-                file.write(f"{name}:{price}\n")
     
-    def load(self):
-        try:
-            with open("catalog_1.txt","r", encoding="utf-8") as file:
-                for line in file:
-                    name, price = line.strip().split(":")
-                    self.items[name] = float(price)
-        except FileNotFoundError:
-            pass
-"""
-
-"""
-        if not name:
-            print("Название не может быть пустым")
-            return
-
-        if name in self.items:
-            return name, self.items[name]
-        else:
-            return("Товар не найден")
-"""        

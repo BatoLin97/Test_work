@@ -6,11 +6,7 @@ def check_string(data: str) -> bool:
     :return: True или False
     :rtype: bool    
     """      
-    if not data.strip():
-        print("Название не может быть пустым")
-        return False
-    else:
-        return True
+    return bool(data and data.strip())
     
 def check_number(number) -> bool:
     """
@@ -22,11 +18,7 @@ def check_number(number) -> bool:
     """
     try:
         number = float(number)
-        if number <= 0.0:
-            print("Цена не должна быть меньше 0 ")
-            return False
-        else:
-            return True
+        return number > 0
     except (ValueError,TypeError):
         print("Введите число")
         return False

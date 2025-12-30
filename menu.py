@@ -1,6 +1,6 @@
 class Menu: 
 
-    def __init__ (self):
+    def show_menu(self):
         print("""
 _______________________________________
           1 - Add item
